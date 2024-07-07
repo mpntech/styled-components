@@ -12,10 +12,10 @@ module.exports = () => ({
       },
     ],
     '@babel/preset-react',
-    '@babel/preset-typescript',
+    '@babel/preset-flow',
   ],
   plugins: [
-    '@babel/plugin-transform-flow-strip-types',
+    ['babel-plugin-transform-react-remove-prop-types', { mode: 'unsafe-wrap' }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     modules === 'commonjs' && 'add-module-exports',

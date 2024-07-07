@@ -1,4 +1,6 @@
+// @flow
 const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const path = require('path');
 
 const appDirectory = path.resolve(__dirname);
@@ -18,16 +20,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { modules: true, localIdentName: '[hash:base64:8]' },
+          },
+        ],
       },
       {
         test: /\.js$/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
-      },
-      {
-        test: /\.(js|tsx?)$/,
         include: [path.join(appDirectory, 'src')],
         use: {
           loader: 'babel-loader',
@@ -36,14 +39,18 @@ module.exports = {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    }),
+
     new webpack.DefinePlugin({
       __VERSION__: JSON.stringify('benchmark'),
     }),
   ],
   resolve: {
     alias: {
-      'react-native$': 'react-native-web',
+      'react-native': 'react-native-web'
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.json'],
   },
 };

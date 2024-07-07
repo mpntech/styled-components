@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import classnames from 'classnames';
 import React from 'react';
-import styles from './box-styles.css';
 import View from './View';
+import styles from './box-styles.css';
 
 const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other }) => (
   <View
@@ -9,7 +10,7 @@ const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other 
     className={classnames(styles[`color${color}`], {
       [styles.fixed]: fixed,
       [styles.outer]: outer,
-      [styles.row]: layout === 'row',
+      [styles.row]: layout === 'row'
     })}
   />
 );

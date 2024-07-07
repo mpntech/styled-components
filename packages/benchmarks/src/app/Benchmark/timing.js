@@ -1,8 +1,10 @@
+// @flow
+
 const NS_PER_MS = 1e6;
 const MS_PER_S = 1e3;
 
 // Returns a high resolution time (if possible) in milliseconds
-export function now() {
+export function now(): number {
   if (window && window.performance) {
     return window.performance.now();
   } else if (process && process.hrtime) {

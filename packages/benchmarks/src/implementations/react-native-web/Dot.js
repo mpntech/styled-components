@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createElement, StyleSheet } from 'react-native';
 
 const Dot = ({ size, x, y, children, color }) =>
@@ -11,9 +12,9 @@ const Dot = ({ size, x, y, children, color }) =>
         borderBottomWidth: size / 2,
         borderLeftWidth: size / 2,
         marginLeft: x,
-        marginTop: y,
-      },
-    ],
+        marginTop: y
+      }
+    ]
   });
 
 const styles = StyleSheet.create({
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     borderStyle: 'solid',
     borderTopWidth: 0,
-    transform: [{ translateX: '50%' }, { translateY: '50%' }],
-  },
+    transform: [{ translateX: '50%' }, { translateY: '50%' }]
+  }
 });
 
 export default Dot;
